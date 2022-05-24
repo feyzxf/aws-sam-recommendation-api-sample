@@ -13,9 +13,9 @@ It includes the following files and folders.
 
 Amazon Personalize enables developers to build applications with the same machine learning (ML) technology used by Amazon.com for real-time personalized recommendations – no ML expertise required. For geting real-time recommendations, after you complete Preparing and importing data and Creating a solution, you are ready to deploy your solution version to generate recommendations. You deploy a solution version by creating an Amazon Personalize campaign. A campaign is a deployed solution version (trained model) with provisioned dedicated transaction capacity for creating real-time recommendations for your application users. 
 
+# Solution Overview
 This sample project demostrate how to implement a Lambda function to get a list of recommended content by calling the Amazon Personalize campaign and then look up the detailed information of the content from a DynamoDB table. A Restful API is also created for this lambda function using Amazon API Gateway. For API authentication and authrization, the API is protected by both API Key and Cognito Authorizer.
 
-# Solution Overview
 ![Screenshot 2022-05-24 at 2 27 35 PM](https://user-images.githubusercontent.com/73056587/169967032-1532e9bb-ed4a-4c80-abcd-a02611f12930.png)
 
 
