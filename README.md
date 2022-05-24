@@ -16,6 +16,7 @@ Amazon Personalize enables developers to build applications with the same machin
 This sample project demostrate how to implement a Lambda function to get a list of recommended content by calling the Amazon Personalize campaign and then look up the detailed information of the content from a DynamoDB table. A Restful API is also created for this lambda function using Amazon API Gateway. For API authentication and authrization, the API is protected by both API Key and Cognito Authorizer.
 
 # Solution Overview
+![Screenshot 2022-05-24 at 2 27 35 PM](https://user-images.githubusercontent.com/73056587/169967032-1532e9bb-ed4a-4c80-abcd-a02611f12930.png)
 
 
 # Prerequisites and preparations
@@ -32,7 +33,7 @@ https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-
     * Cognito_User_Pool_ARN -- the Amazon Cognito user pool ARN created in step #1
     * Personalize_Campaign_ARN -- the Amazon Personalize Campaign ARN created in step #2
     * DynamoDB_Table_Name -- the DynameDB table name generated in step #3
-    * REGION -- the resgion you choose to deploy the api.For example ap-southeast-1
+    * REGION -- the resgion you choose to deploy the API. For example ap-southeast-1
 
 
 ## Deploy the sample application
