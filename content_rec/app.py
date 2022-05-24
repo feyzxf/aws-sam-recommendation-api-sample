@@ -9,7 +9,8 @@ def lambda_handler(event, context):
     CONTENT_TABLE_NAME = os.environ['CONTENT_TABLE_NAME']
     CAMPAIGN_ARN = os.environ['CAMPAIGN_ARN']
 
-    userId = event['userId']
+    paramString = event['queryStringParameters']
+    userId = paramString['userId']
 
     response = personalizeRt.get_recommendations(
         campaignArn = CAMPAIGN_ARN,
