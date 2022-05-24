@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  content-recommendation
+
+  Sample SAM Template for content-recommendation
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  ContentRecommendationApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: "'GET, OPTIONS'"
+        AllowOrigin: "'*'"
+        AllowHeaders: "'Content-type, x-api-key'"
+      Auth:
+        AddDefaultAuthorizerToCorsPreflight: false
+        ApiKeyRequired: true
+        UsagePlan:
+          CreateUsagePlan: PER_API
+          Description: Usage plan for this API
+          Quota:
+            Limit: 500
+            Period: MONTH
+          Throttle:
+            BurstLimit: 50
+            RateLimit: 100
+        DefaultAuthorizer: MyCognitoAuthorizer
+        Authorizers:
+          MyCognitoAuthorizer:
+            UserPoolArn: <Cognito_User_Pool_ARN>
+
+  ContentRecommendationFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: content_rec/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          CONTENT_TABLE_NAME: <DynamoDB_Table_Name>
+          CAMPAIGN_ARN: <Personalize_Campaign_ARN>
+          REGION: <REGION>
+      Events:
+        ContentRecommendation:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            RestApiId: !Ref ContentRecommendationApi
+            Path: /recommendation
+            Method: get
+      Policies:
+        - DynamoDBReadPolicy: 
+            TableName: <DynamoDB_Table_Name>
+        - Statement:
+          - Sid: GetPersonalizeRecommendationPolicy
+            Effect: Allow
+            Action:
+            - personalize:GetRecommendations
+            Resource: <Personalize_Campaign_ARN>
+        
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  ContentRecommendationApi:
+    Description: "API Gateway endpoint URL for Prod stage for Content Recommendation function"
+    Value: !Sub ContentRecommendationApi.Arn
+  ContentRecommendationFunction:
+    Description: "Content Recommendation Lambda Function ARN"
+    Value: !GetAtt ContentRecommendationFunction.Arn
+  ContentRecommendationFunctionIamRole:
+    Description: "Implicit IAM Role created for Content Recommendation function"
+    Value: !GetAtt ContentRecommendationFunction.Arn

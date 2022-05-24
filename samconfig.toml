@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "content-rec"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-15hc1cd9q67pe"
+s3_prefix = "content-rec"
+region = "ap-southeast-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
