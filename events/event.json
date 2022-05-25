@@ -1,3 +1,6 @@
 {
-    "userId": "1234567890"
+    "queryStringParameters":
+        {
+            "userId":"feyzxf"
+        }
 }
