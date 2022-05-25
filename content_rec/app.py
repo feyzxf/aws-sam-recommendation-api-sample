@@ -36,6 +36,11 @@ def lambda_handler(event, context):
         contentList.append(contentItem)
     return {
         "statusCode": 200,
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,GET'
+        },
         "body": json.dumps({
             "message": "Top picks for you",
             "contentList": contentList

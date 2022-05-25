@@ -30,10 +30,10 @@ https://aws.amazon.com/getting-started/hands-on/real-time-movie-recommendations-
 https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-dynamodb/
 
 4. Update template.yaml and update the place holder as below:
-    * Cognito_User_Pool_ARN -- the Amazon Cognito user pool ARN created in step #1
-    * Personalize_Campaign_ARN -- the Amazon Personalize Campaign ARN created in step #2
-    * DynamoDB_Table_Name -- the DynameDB table name generated in step #3
-    * REGION -- the resgion you choose to deploy the API. For example ap-southeast-1
+    * <Cognito_User_Pool_ARN> -- the Amazon Cognito user pool ARN created in step #1
+    * <Personalize_Campaign_ARN> -- the Amazon Personalize Campaign ARN created in step #2
+    * <DynamoDB_Table_Name> -- the DynameDB table name generated in step #3
+    * <Region> -- the resgion you choose to deploy the API. For example ap-southeast-1
 
 
 ## Deploy the sample application

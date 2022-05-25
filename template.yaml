@@ -18,10 +18,9 @@ Resources:
       Cors:
         AllowMethods: "'GET, OPTIONS'"
         AllowOrigin: "'*'"
-        AllowHeaders: "'Content-type, x-api-key'"
+        AllowHeaders: "'Content-type, x-api-key, Authorization'"
       Auth:
         AddDefaultAuthorizerToCorsPreflight: false
-        ApiKeyRequired: true
         UsagePlan:
           CreateUsagePlan: PER_API
           Description: Usage plan for this API
@@ -48,7 +47,7 @@ Resources:
         Variables:
           CONTENT_TABLE_NAME: <DynamoDB_Table_Name>
           CAMPAIGN_ARN: <Personalize_Campaign_ARN>
-          REGION: <REGION>
+          REGION: <Region>
       Events:
         ContentRecommendation:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -56,6 +55,8 @@ Resources:
             RestApiId: !Ref ContentRecommendationApi
             Path: /recommendation
             Method: get
+            Auth:
+              ApiKeyRequired: true
             RequestParameters:
               - method.request.querystring.userId:
                   Required: true
