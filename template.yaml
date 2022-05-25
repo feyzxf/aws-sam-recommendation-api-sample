@@ -47,7 +47,7 @@ Resources:
         Variables:
           CONTENT_TABLE_NAME: <DynamoDB_Table_Name>
           CAMPAIGN_ARN: <Personalize_Campaign_ARN>
-          REGION: <Region>
+          REGION: <Target_Region>
       Events:
         ContentRecommendation:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
