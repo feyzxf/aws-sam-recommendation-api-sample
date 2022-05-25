@@ -33,7 +33,7 @@ https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-
     * <Cognito_User_Pool_ARN> -- the Amazon Cognito user pool ARN created in step #1
     * <Personalize_Campaign_ARN> -- the Amazon Personalize Campaign ARN created in step #2
     * <DynamoDB_Table_Name> -- the DynameDB table name generated in step #3
-    * <Region> -- the region you choose to deploy the API. For example ap-southeast-1
+    * <Target_Region> -- the region you choose to deploy the API. For example ap-southeast-1
 
 
 ## Deploy the sample application
